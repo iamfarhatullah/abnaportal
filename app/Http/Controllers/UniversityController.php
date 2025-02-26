@@ -3,18 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\University;
+use App\Models\Region;
 use App\Models\Country;
 use Illuminate\Http\Request;
 
 class UniversityController extends Controller{
     public function index(){
+        $regions = Region::all();
         $universities = University::with('country')->orderBy('name', 'asc')->get();
-        return view('universities.index', compact('universities'));
+        return view('universities.index', compact('regions', 'universities'));
     }
 
     public function create(){
+        $regions = Region::all();
         $countries = Country::all();
-        return view('universities.create', compact('countries'));
+        return view('universities.create', compact('regions', 'countries'));
     }
 
     public function store(Request $request){
@@ -22,6 +25,7 @@ class UniversityController extends Controller{
             'name' => 'required|string|max:255',
             'picture' => 'nullable|image|max:2048',
             'country_id' => 'required|exists:countries,id',
+            'region_id' => 'required|exists:regions,id',
         ]);
         $data = $request->all();
         if ($request->hasFile('picture')) {
@@ -38,8 +42,9 @@ class UniversityController extends Controller{
     }
 
     public function edit(University $university){
+        $regions = Region::all();
         $countries = Country::all();
-        return view('universities.edit', compact('university', 'countries'));
+        return view('universities.edit', compact('regions', 'university', 'countries'));
     }
 
     public function update(Request $request, University $university){
@@ -47,6 +52,7 @@ class UniversityController extends Controller{
             'name' => 'required|string|max:255',
             'picture' => 'nullable|image|max:2048',
             'country_id' => 'required|exists:countries,id',
+            'region_id' => 'required|exists:regions,id',
         ]);
         $data = $request->all();
         if ($request->hasFile('picture')) {

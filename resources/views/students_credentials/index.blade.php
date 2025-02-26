@@ -21,7 +21,8 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Credentials</th>
+                    <th>Email</th>
+                    <th>Password</th>
                     <th>Description</th>
                     <th>Created On</th>
                     <th>Action</th>
@@ -32,15 +33,25 @@
                     <tr>
                         <td>{{ $credential->id }}</td>
                         <td>{{ $credential->student_name }}</td>
-                        <td>Email: {{ $credential->email }} <br> Password: {{ $credential->password }}</td>
-                        <td>{{ $credential->description ?? 'N/A' }} <br> Email: {{ $credential->recovery_email ?? 'N/A' }} <br> Phone: {{ $credential->recovery_phone ?? 'N/A' }} </td>
+                        <td>{{ $credential->email }}</td>
+                        <td>{{ $credential->password }}</td>
+                        <!-- <td>
+                            <strong>Email:</strong> {{ $credential->email }} <br> 
+                            <strong>Password:</strong> {{ $credential->password }}
+                        </td> -->
+                        <td>
+                            {{ $credential->description ?? '--' }} 
+                            <br><br> <i><strong>Recovery options:</strong></i> <br> 
+                            Email: {{ $credential->recovery_email ?? '--' }} <br> 
+                            Phone: {{ $credential->recovery_phone ?? '--' }} 
+                        </td>
                         <td>{{ $credential->created_at->format('Y-m-d') }}</td>
                         <td>
                             <a href="{{ route('students_credentials.edit', $credential->id) }}" class="sm-primary-btn">Edit</a>
                             <form action="{{ route('students_credentials.destroy', $credential->id) }}" method="POST" style="display:inline;">
                                 @csrf
-                                @method('DELETE')
-                                <button type="submit" class="sm-danger-btn" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></button>
+                                @method('DELETE')   
+                                <button type="submit" class="sm-delete-btn" onclick="return confirm('Are you sure?')"><i class="fas fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>

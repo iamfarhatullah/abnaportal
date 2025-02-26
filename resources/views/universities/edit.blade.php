@@ -41,6 +41,22 @@
                 <br>
                 <div class="row">
                     <div class="col-md-2 col-sm-3">
+                        <label>Region *</label>
+                    </div>
+                    <div class="col-md-6 col-sm-7">
+                        <select class="form-field" id="region_id" name="region_id">
+                            <option value="">Select Region</option>
+                            @foreach ($regions as $region)
+                                <option value="{{ $region->id }}" {{ $university->region_id == $region->id ? 'selected' : '' }}>
+                                    {{ $region->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
                         <label>Logo (Optional)</label>
                     </div>
                     <div class="col-md-6 col-sm-7">

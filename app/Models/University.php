@@ -8,23 +8,17 @@ class University extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name', 
-        'country_id', 
-        'picture', 
-    ];
+    protected $fillable = ['name', 'picture', 'country_id', 'region_id'];
 
     public function country()
     {
         return $this->belongsTo(Country::class);
     }
 
-    // public function portals()
-    // {
-    //     return $this->belongsToMany(Portal::class, 'commissions')
-    //                 ->withPivot('commission_percentage')
-    //                 ->withTimestamps();
-    // }
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
 
     public function commissions()
     {

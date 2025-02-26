@@ -13,9 +13,6 @@
                     </div>
                     <div class="col-md-6 col-sm-7">
                         <input type="text" name="name" class="form-field" value="{{ old('name') }}" placeholder="Enter University Name">
-                        @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
                 </div>
                 <br>
@@ -30,9 +27,20 @@
                                 <option value="{{ $country->id }}">{{ $country->name }}</option>
                             @endforeach
                         </select>
-                        @error('country_id')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-2 col-sm-3">
+                        <label>Region *</label>
+                    </div>
+                    <div class="col-md-6 col-sm-7">
+                        <select class="form-field" id="region_id" name="region_id">
+                            <option value="">Select Region</option>
+                            @foreach ($regions as $region)
+                                <option value="{{ $region->id }}">{{ $region->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <br>

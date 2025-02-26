@@ -33,11 +33,11 @@
                     <td>{{ $portal->name }}</td>
                     <td></td>
                     <td>
-                        <a href="{{ route('portals.edit', $portal->id) }}" class="primary-btn">Edit</a>
+                        <a href="{{ route('portals.edit', $portal->id) }}" class="sm-primary-btn">Edit</a>
                         <form action="{{ route('portals.destroy', $portal->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="sm-danger-btn"><i class="fa fa-trash"></i></button>
+                            <button type="submit" class="sm-delete-btn"><i class="fa fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>
