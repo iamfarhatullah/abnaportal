@@ -6,6 +6,7 @@ use App\Http\Controllers\PortalController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentsCredentialsController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified', 'preventBackHistory'])->group(function () {
@@ -44,6 +45,8 @@ Route::middleware(['auth', 'preventBackHistory'])->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('students', StudentController::class);
 
     Route::get('/students-credentials', [StudentsCredentialsController::class, 'index'])->name('students_credentials.index');
     Route::get('/students-credentials/create', [StudentsCredentialsController::class, 'create'])->name('students_credentials.create');

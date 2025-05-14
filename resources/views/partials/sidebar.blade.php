@@ -18,6 +18,12 @@
 					<span class="to-hide">Dashboard <i class="fa fa-angle-right pull-right angle-icon"></i></span>
 				</a>
 			</div>
+			<div data-toggle="tooltip" data-placement="right" title="Students">
+				<a href="{{route('students.index')}}">
+					<i class="fas fa-pound-sign"></i>
+					<span class="to-hide">Students <i class="fa fa-angle-right pull-right angle-icon"></i></span>
+				</a>
+			</div>
 			<div data-toggle="tooltip" data-placement="right" title="Commissions">
 				<a href="{{route('commissions.index')}}">
 					<i class="fas fa-pound-sign"></i>

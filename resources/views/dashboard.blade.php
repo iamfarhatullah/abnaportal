@@ -89,7 +89,7 @@
     }
 
     #suggestionList .active {
-        background-color: #007bff;
+        background-color: #2a3f54;
         color: white;
     }
 </style>
@@ -101,7 +101,7 @@
         const universities = JSON.parse(document.getElementById('university-data').dataset.universities);
 
         let selectedUniversity = null;
-        let currentFocus = -1; // Index of currently focused list item
+        let currentFocus = -1;
 
         function closeSuggestions() {
             suggestionList.style.display = 'none';
