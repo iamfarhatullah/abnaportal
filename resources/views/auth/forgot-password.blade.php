@@ -1,17 +1,16 @@
-
 @extends('layouts.guest')
 @section('title', 'Login')
 @section('content')
 @if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
+<div class="alert alert-success">
+    {{ session('status') }}
+</div>
 @endif
 
 @if ($errors->has('email'))
-    <div class="alert alert-danger">
-        {{ $errors->first('email') }}
-    </div>
+<div class="alert alert-danger">
+    {{ $errors->first('email') }}
+</div>
 @endif
 
 
@@ -24,5 +23,5 @@
     <input id="email" class="form-field" type="email" name="email" :value="old('email')" placeholder="Enter your email" autofocus />
     <br><br>
     <button class="primary-btn"> {{ __('Submit') }} </button>
-    </form>
+</form>
 @endsection

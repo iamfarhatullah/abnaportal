@@ -9,18 +9,22 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
-class ProfileController extends Controller{
-    public function index(){
+class ProfileController extends Controller
+{
+    public function index()
+    {
         return view('profile.index');
     }
 
-    public function edit(Request $request): View{
+    public function edit(Request $request): View
+    {
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
     }
 
-    public function update(ProfileUpdateRequest $request): RedirectResponse{
+    public function update(ProfileUpdateRequest $request): RedirectResponse
+    {
         $request->user()->fill($request->validated());
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
@@ -29,7 +33,8 @@ class ProfileController extends Controller{
         return Redirect::route('profile.edit')->with('message', 'Profile Updated Successfully');
     }
 
-    public function destroy(Request $request): RedirectResponse{
+    public function destroy(Request $request): RedirectResponse
+    {
         $request->validateWithBag('userDeletion', [
             'password' => ['required', 'current_password'],
         ]);

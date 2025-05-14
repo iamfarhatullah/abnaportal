@@ -9,7 +9,7 @@ class StudentsCredentialsController extends Controller
 {
     public function index()
     {
-        $studentsCredentials = StudentsCredentials::all();
+        $studentsCredentials = StudentsCredentials::orderBy('id', 'desc')->get();
         return view('students_credentials.index', compact('studentsCredentials'));
     }
 
@@ -84,4 +84,3 @@ class StudentsCredentialsController extends Controller
         return redirect()->route('students_credentials.index')->with('success', 'Student credentials deleted successfully.');
     }
 }
-

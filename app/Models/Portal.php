@@ -11,8 +11,7 @@ class Portal extends Model
     public function universities()
     {
         return $this->belongsToMany(University::class, 'commissions')
-                    ->withPivot('commission_percentage')
-                    ->withTimestamps();
+            ->withPivot('commission_percentage')
+            ->withTimestamps();
     }
-
 }

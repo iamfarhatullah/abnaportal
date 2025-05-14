@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\PakUniversityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\PortalController;
@@ -52,9 +51,7 @@ Route::middleware(['auth', 'preventBackHistory'])->group(function () {
     Route::get('/students-credentials/{id}/edit', [StudentsCredentialsController::class, 'edit'])->name('students_credentials.edit');
     Route::put('/students-credentials/{id}', [StudentsCredentialsController::class, 'update'])->name('students_credentials.update');
     Route::delete('/students-credentials/{id}', [StudentsCredentialsController::class, 'destroy'])->name('students_credentials.destroy');
-
-    Route::resource('pak-universities', PakUniversityController::class);
 });
 
 // Include authentication routes (login, register, etc.)
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

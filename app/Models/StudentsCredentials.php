@@ -20,4 +20,3 @@ class StudentsCredentials extends Model
         'recovery_phone'
     ];
 }
-

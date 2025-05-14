@@ -7,7 +7,7 @@
         <div class="form-wrapper">
             <h3 class="form-title">Add New Portal</h3><br>
             <form action="{{ route('portals.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
+                @csrf
                 <div class="row">
                     <div class="col-md-2 col-sm-3">
                         <label>Portal Name *</label>
@@ -24,17 +24,17 @@
                     <div class="col-md-6 col-sm-7">
                         <input type="file" id="picture" name="image" class="form-field">
                     </div>
-                </div>                
+                </div>
                 <hr>
                 <div class="row">
                     <div class="col-md-2 col-sm-3"></div>
                     <div class="col-md-6 col-sm-7">
-						<div class="pull-right">
-							<input type="reset" class="primary-btn" value="Reset">
-							<button type="submit" class="success-btn">Save</button><br><br>
-						</div>
-					</div>
-				</div>
+                        <div class="pull-right">
+                            <input type="reset" class="primary-btn" value="Reset">
+                            <button type="submit" class="success-btn">Save</button><br><br>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

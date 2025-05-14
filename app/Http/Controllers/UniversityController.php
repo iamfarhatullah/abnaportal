@@ -7,20 +7,30 @@ use App\Models\Region;
 use App\Models\Country;
 use Illuminate\Http\Request;
 
-class UniversityController extends Controller{
-    public function index(){
+class UniversityController extends Controller
+{
+    public function index()
+    {
+        $countries = University::select('country_id')
+            ->distinct()
+            ->with('country')
+            ->get()
+            ->pluck('country')
+            ->sortBy('name');
         $regions = Region::all();
-        $universities = University::with('country')->orderBy('name', 'asc')->get();
-        return view('universities.index', compact('regions', 'universities'));
+        $universities = University::with('country')->orderBy('country_id', 'asc')->orderBy('name', 'asc')->get();
+        return view('universities.index', compact('regions', 'universities', 'countries'));
     }
 
-    public function create(){
+    public function create()
+    {
         $regions = Region::all();
         $countries = Country::all();
         return view('universities.create', compact('regions', 'countries'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required|string|max:255',
             'picture' => 'nullable|image|max:2048',
@@ -37,17 +47,20 @@ class UniversityController extends Controller{
         return redirect()->route('universities.index')->with('success', 'University created successfully.');
     }
 
-    public function show(University $university){
+    public function show(University $university)
+    {
         return view('universities.show', compact('university'));
     }
 
-    public function edit(University $university){
+    public function edit(University $university)
+    {
         $regions = Region::all();
         $countries = Country::all();
         return view('universities.edit', compact('regions', 'university', 'countries'));
     }
 
-    public function update(Request $request, University $university){
+    public function update(Request $request, University $university)
+    {
         $request->validate([
             'name' => 'required|string|max:255',
             'picture' => 'nullable|image|max:2048',
@@ -67,7 +80,8 @@ class UniversityController extends Controller{
         return redirect()->route('universities.index')->with('success', 'University updated successfully.');
     }
 
-    public function destroy(University $university){
+    public function destroy(University $university)
+    {
         $university->delete();
         return redirect()->route('universities.index')->with('success', 'University deleted successfully.');
     }

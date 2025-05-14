@@ -1,25 +1,30 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Portal;
 use Illuminate\Http\Request;
 
-class PortalController extends Controller{
-    public function index(){
+class PortalController extends Controller
+{
+    public function index()
+    {
         $portals = Portal::all();
         return view('portals.index', compact('portals'));
     }
-    
-    public function create(){
+
+    public function create()
+    {
         return view('portals.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        $imageName = time().'.'.$request->image->extension();
+        $imageName = time() . '.' . $request->image->extension();
         $request->image->move(public_path('uploads'), $imageName);
         Portal::create([
             'name' => $validated['name'],
@@ -29,17 +34,20 @@ class PortalController extends Controller{
         return redirect()->route('portals.index');
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $portal = Portal::findOrFail($id);
         return view('portals.show', compact('portal'));
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $portal = Portal::findOrFail($id);
         return view('portals.edit', compact('portal'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -47,7 +55,7 @@ class PortalController extends Controller{
         $portal = Portal::findOrFail($id);
         $portal->name = $validated['name'];
         if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->image->extension();
+            $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('uploads'), $imageName);
             $portal->image = $imageName;
         }
@@ -56,7 +64,8 @@ class PortalController extends Controller{
         return redirect()->route('portals.index');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $portal = Portal::findOrFail($id);
         $portal->delete();
         session()->flash('success', 'Portal deleted successfully!');
