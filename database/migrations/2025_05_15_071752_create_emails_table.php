@@ -7,21 +7,18 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::create('students_credentials', function (Blueprint $table) {
+        Schema::create('emails', function (Blueprint $table) {
             $table->id();
             $table->string('student_name');
             $table->string('email')->unique();
             $table->string('password');
             $table->text('description')->nullable();
-            $table->string('recovery_email')->nullable();
-            $table->string('recovery_phone')->nullable();
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('students_credentials');
+        Schema::dropIfExists('emails');
     }
 };
-

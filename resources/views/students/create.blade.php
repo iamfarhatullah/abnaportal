@@ -119,6 +119,16 @@
                             </select>
                         </div>
 
+                         <div class="mb-2">
+                            <label>Portal</label>
+                            <select name="preferences[${preferenceIndex}][portal_id]" class="form-control">
+                                <option value="">-- Select Portal --</option>
+                                @foreach($portals as $portal)
+                                    <option value="{{ $portal->id }}">{{ $portal->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="mb-2">
                             <label>Status</label>
                             <select name="preferences[${preferenceIndex}][status_id]" class="form-control">
@@ -131,7 +141,7 @@
 
                         <div class="mb-3">
                             <label>Counsellor Notes</label>
-                            <textarea name="preferences[${preferenceIndex}][counsellor_notes]" class="form-control">{{ old('counsellor_notes', $student->counsellor_notes ?? '') }}</textarea>
+                            <textarea name="preferences[${preferenceIndex}][notes]" class="form-control">{{ old('notes', $student->notes ?? '') }}</textarea>
                         </div>
 
                         <div class="mb-2">

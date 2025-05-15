@@ -6,6 +6,7 @@ use App\Models\Student;
 use App\Models\StudentPreference;
 use App\Models\Status;
 use App\Models\Intake;
+use App\Models\Portal;
 use App\Models\University;
 use App\Models\Qualification;
 use Illuminate\Http\Request;
@@ -26,7 +27,8 @@ class StudentController extends Controller
         $qualifications = Qualification::all();
         $intakes = Intake::all();
         $statuses = Status::all();
-        return view('students.create', compact('qualifications', 'universities', 'intakes', 'statuses'));
+        $portals = Portal::all();
+        return view('students.create', compact('qualifications', 'universities', 'intakes', 'statuses', 'portals'));
     }
 
     public function store(Request $request)
@@ -44,7 +46,7 @@ class StudentController extends Controller
             'preferences.*.course' => 'required|string|max:255',
             'preferences.*.intake_id' => 'nullable|exists:intakes,id',
             'preferences.*.status_id' => 'nullable|exists:statuses,id',
-            'preferences.*.counsellor_notes' => 'nullable|string',
+            'preferences.*.notes' => 'nullable|string',
             'preferences.*.portal_url' => 'nullable|url|max:255',
             'preferences.*.applied_on' => 'nullable|date',
         ]);
@@ -63,10 +65,11 @@ class StudentController extends Controller
             foreach ($validated['preferences'] as $pref) {
                 $student->preferences()->create([
                     'university_id' => $pref['university_id'],
-                    'desired_course' => $pref['course'],
+                    'course' => $pref['course'],
                     'intake_id' => $pref['intake_id'] ?? null,
                     'status_id' => $pref['status_id'] ?? null,
-                    'counsellor_notes' => $pref['counsellor_notes'] ?? null,
+                    'portal_id' => $pref['portal_id'] ?? null,
+                    'notes' => $pref['notes'] ?? null,
                     'portal_url' => $pref['portal_url'] ?? null,
                     'applied_on' => $pref['applied_on'] ?? null,
                 ]);
@@ -90,6 +93,7 @@ class StudentController extends Controller
         $universities = University::all();
         $intakes = Intake::all();
         $statuses = Status::all();
+        $portals = Portal::all();
 
         $student->load('preferences');
 
@@ -98,7 +102,8 @@ class StudentController extends Controller
             'qualifications',
             'universities',
             'intakes',
-            'statuses'
+            'statuses',
+            'portals'
         ));
     }
 
@@ -116,7 +121,8 @@ class StudentController extends Controller
             'preferences.*.course' => 'required|string|max:255',
             'preferences.*.intake_id' => 'nullable|exists:intakes,id',
             'preferences.*.status_id' => 'nullable|exists:statuses,id',
-            'preferences.*.counsellor_notes' => 'nullable|string',
+            'preferences.*.portal_id' => 'nullable|exists:portals,id',
+            'preferences.*.notes' => 'nullable|string',
             'preferences.*.portal_url' => 'nullable|url',
             'preferences.*.applied_on' => 'nullable|date',
         ]);
@@ -144,10 +150,11 @@ class StudentController extends Controller
                     if ($preference) {
                         $preference->update([
                             'university_id' => $preferenceData['university_id'],
-                            'desired_course' => $preferenceData['course'],
+                            'course' => $preferenceData['course'],
                             'intake_id' => $preferenceData['intake_id'],
                             'status_id' => $preferenceData['status_id'],
-                            'counsellor_notes' => $preferenceData['counsellor_notes'],
+                            'portal_id' => $preferenceData['portal_id'],
+                            'notes' => $preferenceData['notes'],
                             'portal_url' => $preferenceData['portal_url'],
                             'applied_on' => $preferenceData['applied_on'],
                         ]);
@@ -155,10 +162,11 @@ class StudentController extends Controller
                 } else {
                     $student->preferences()->create([
                         'university_id' => $preferenceData['university_id'],
-                        'desired_course' => $preferenceData['course'],
+                        'course' => $preferenceData['course'],
                         'intake_id' => $preferenceData['intake_id'],
                         'status_id' => $preferenceData['status_id'],
-                        'counsellor_notes' => $preferenceData['counsellor_notes'],
+                        'portal_id' => $preferenceData['portal_id'],
+                        'notes' => $preferenceData['notes'],
                         'portal_url' => $preferenceData['portal_url'],
                         'applied_on' => $preferenceData['applied_on'],
                     ]);

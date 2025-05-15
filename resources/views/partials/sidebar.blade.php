@@ -20,7 +20,7 @@
 			</div>
 			<div data-toggle="tooltip" data-placement="right" title="Students">
 				<a href="{{route('students.index')}}">
-					<i class="fas fa-pound-sign"></i>
+					<i class="fas fa-user-graduate"></i>
 					<span class="to-hide">Students <i class="fa fa-angle-right pull-right angle-icon"></i></span>
 				</a>
 			</div>
@@ -37,7 +37,7 @@
 				</a>
 			</div>
 			<div data-toggle="tooltip" data-placement="right" title="Emails">
-				<a href="{{route('students_credentials.index')}}">
+				<a href="{{route('emails.index')}}">
 					<i class="fas fa-envelope"></i>
 					<span class="to-hide">Emails <i class="fa fa-angle-right pull-right angle-icon"></i></span>
 				</a>

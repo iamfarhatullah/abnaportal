@@ -5,7 +5,7 @@ use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\PortalController;
 use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\StudentsCredentialsController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,12 +48,12 @@ Route::middleware(['auth', 'preventBackHistory'])->group(function () {
 
     Route::resource('students', StudentController::class);
 
-    Route::get('/students-credentials', [StudentsCredentialsController::class, 'index'])->name('students_credentials.index');
-    Route::get('/students-credentials/create', [StudentsCredentialsController::class, 'create'])->name('students_credentials.create');
-    Route::post('/students-credentials', [StudentsCredentialsController::class, 'store'])->name('students_credentials.store');
-    Route::get('/students-credentials/{id}/edit', [StudentsCredentialsController::class, 'edit'])->name('students_credentials.edit');
-    Route::put('/students-credentials/{id}', [StudentsCredentialsController::class, 'update'])->name('students_credentials.update');
-    Route::delete('/students-credentials/{id}', [StudentsCredentialsController::class, 'destroy'])->name('students_credentials.destroy');
+    Route::get('/emails', [EmailController::class, 'index'])->name('emails.index');
+    Route::get('/emails/create', [EmailController::class, 'create'])->name('emails.create');
+    Route::post('/emails', [EmailController::class, 'store'])->name('emails.store');
+    Route::get('/emails/{id}/edit', [EmailController::class, 'edit'])->name('emails.edit');
+    Route::put('/emails/{id}', [EmailController::class, 'update'])->name('emails.update');
+    Route::delete('/emails/{id}', [EmailController::class, 'destroy'])->name('emails.destroy');
 });
 
 // Include authentication routes (login, register, etc.)

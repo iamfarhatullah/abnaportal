@@ -13,9 +13,8 @@
             <p><strong>Name:</strong> {{ $student->name }}</p>
             <p><strong>Email:</strong> {{ $student->email }}</p>
             <p><strong>Phone:</strong> {{ $student->phone }}</p>
-            <p><strong>Current Education:</strong> {{ $student->current_education }}</p>
-            <p><strong>Graduated From:</strong> {{ $student->graduated_from }}</p>
             <p><strong>Qualification:</strong> {{ $student->qualification ? $student->qualification->name : 'N/A' }}</p>
+            <p><strong>Graduated From:</strong> {{ $student->graduated_from }}</p>
             <p><strong>Test:</strong> {{ $student->test }}</p>
             <p><strong>Notes:</strong> {{ $student->notes }}</p>
         </div>
@@ -35,7 +34,7 @@
                 <div class="list-group-item">
                     <h5>Preference #{{ $loop->iteration }}</h5>
                     <p><strong>University:</strong> {{ $preference->university->name }}</p>
-                    <p><strong>Course:</strong> {{ $preference->desired_course }}</p>
+                    <p><strong>Course:</strong> {{ $preference->course }}</p>
                     <p><strong>Intake:</strong> {{ $preference->intake ? $preference->intake->name : 'N/A' }}</p>
                     <p><strong>Status:</strong> {{ $preference->status ? $preference->status->name : 'N/A' }}</p>
                     <p><strong>Counsellor Notes:</strong> {{ $preference->counsellor_notes }}</p>

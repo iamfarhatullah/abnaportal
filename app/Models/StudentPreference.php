@@ -12,11 +12,12 @@ class StudentPreference extends Model
     protected $fillable = [
         'student_id',
         'university_id',
-        'desired_course',
+        'country_id',
+        'course',
         'intake_id',
         'status_id',
+        'portal_id',
         'notes',
-        'counsellor_notes',
         'portal_url',
         'applied_on',
     ];
@@ -39,5 +40,13 @@ class StudentPreference extends Model
     public function status()
     {
         return $this->belongsTo(Status::class);
+    }
+    public function portal()
+    {
+        return $this->belongsTo(Portal::class);
+    }
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }

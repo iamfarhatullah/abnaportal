@@ -11,11 +11,13 @@ return new class extends Migration
         Schema::create('student_preferences', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
-            $table->foreignId('university_id')->constrained()->onDelete('cascade');
-            $table->string('desired_course');
+            $table->foreignId('country_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('intake_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('university_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('course');
+            $table->foreignId('portal_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('status_id')->nullable()->constrained()->nullOnDelete();
-            $table->text('counsellor_notes')->nullable();
+            $table->text('notes')->nullable();
             $table->string('portal_url')->nullable();
             $table->timestamp('applied_on')->nullable();
             $table->timestamps();

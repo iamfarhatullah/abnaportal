@@ -16,7 +16,6 @@ class Student extends Model
         'phone',
         'email',
         'notes',
-        'counsellor_notes',
         'test',
         'qualification_id',
     ];
