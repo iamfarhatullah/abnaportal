@@ -1,7 +1,5 @@
 @extends('layouts.main')
-
 @section('title', 'Emails')
-
 @section('content')
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -16,7 +14,12 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-striped table-hover">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" id="searchInput" onkeyup="searchTable()" class="form-field" placeholder="Search...">
+                </div>
+            </div>
+            <table id="search-table" class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -24,21 +27,17 @@
                         <th>Email</th>
                         <th>Password</th>
                         <th>Description</th>
-                        <th>Created On</th>
-                        <th>Action</th>
+                        <th style="width: 94px;">Created On</th>
+                        <th style="width: 92px;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($emails as $credential)
                     <tr>
-                        <td>{{ $credential->id }}</td>
+                        <td>{{ $loop->index+1 }}</td>
                         <td>{{ $credential->student_name }}</td>
                         <td>{{ $credential->email }}</td>
                         <td>{{ $credential->password }}</td>
-                        <!-- <td>
-                            <strong>Email:</strong> {{ $credential->email }} <br> 
-                            <strong>Password:</strong> {{ $credential->password }}
-                        </td> -->
                         <td>
                             {{ $credential->description ?? '--' }}
                         </td>

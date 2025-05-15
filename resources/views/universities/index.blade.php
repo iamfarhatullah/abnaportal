@@ -13,7 +13,6 @@
         </div>
     </div>
 
-
     <div class="">
         <!-- Nav Tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -31,7 +30,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <input type="text" id="searchInput" onkeyup="searchUniversitiesTable()" class="form-field" placeholder="Search for universities or countries...">
+                <input type="text" id="searchInput" onkeyup="searchUniversitiesTable()" class="form-field" placeholder="Search...">
             </div>
         </div>
         <!-- Tab Content -->
@@ -40,13 +39,13 @@
             <div role="tabpanel" class="tab-pane fade {{ $key == 0 ? 'in active' : '' }}"
                 id="content-{{ $country->id }}">
                 <ul class="list-group">
-                    <table id="search-table" class="table table-striped table-hover searchable-table">
+                    <table id="search-table" class="table table-striped table-bordered table-hover searchable-table">
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 12px;">#</th>
-                                <th scope="col" style="width:20%">Region</th>
-                                <th scope="col" style="width:58%">Name</th>
-                                <th scope="col" style="width:12%">Action</th>
+                                <th scope="col">Region</th>
+                                <th scope="col">Name</th>
+                                <th scope="col" style="width: 94px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>

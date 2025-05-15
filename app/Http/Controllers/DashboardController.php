@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $totalUniversities = University::count();
         $totalPortals = Portal::count();
         $totalUsers = User::count();
-        $universities = University::orderBy('name', 'asc')->get();
+        $universities = University::with('commissions', 'country')->where('country_id', '!=', 166)->orderBy('name', 'asc')->get();
 
         return view('dashboard', compact('totalUniversities', 'totalPortals', 'totalUsers', 'universities'));
     }

@@ -9,6 +9,12 @@
         <div class="card-header">
             <h4>Student Information</h4>
         </div>
+        <a href="{{ route('students.edit', $student->id) }}" class="btn btn-sm btn-warning">Edit</a>
+        <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+        </form>
         <div class="card-body">
             <p><strong>Name:</strong> {{ $student->name }}</p>
             <p><strong>Email:</strong> {{ $student->email }}</p>

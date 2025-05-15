@@ -25,7 +25,8 @@ class UniversityController extends Controller
     public function create()
     {
         $regions = Region::all();
-        $countries = Country::all();
+        $countries = Country::whereIn('id', [56, 75, 166, 223, 230, 231])->get();
+
         return view('universities.create', compact('regions', 'countries'));
     }
 
@@ -55,7 +56,7 @@ class UniversityController extends Controller
     public function edit(University $university)
     {
         $regions = Region::all();
-        $countries = Country::all();
+        $countries = Country::whereIn('id', [56, 75, 166, 223, 230, 231])->get();
         return view('universities.edit', compact('regions', 'university', 'countries'));
     }
 

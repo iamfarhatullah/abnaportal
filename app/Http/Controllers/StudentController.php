@@ -17,7 +17,7 @@ class StudentController extends Controller
     public function index()
     {
         $universities = University::with('commissions', 'country')->where('country_id', '!=', 166)->orderBy('name', 'asc')->get();
-        $students = Student::with('qualification')->latest()->paginate(10);
+        $students = Student::with('qualification')->latest()->paginate(100);
         return view('students.index', compact('students', 'universities'));
     }
 
