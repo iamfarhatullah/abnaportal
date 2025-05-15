@@ -8,6 +8,12 @@
 </div>
 
 <div class="row">
+    <div class="col-md-12">
+        <h2>Just checking if it works or not</h2>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-md-6">
         <div class="form-wrapper">
             <h3 class="form-title">Portal finder</h3>
